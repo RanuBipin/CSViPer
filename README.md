@@ -1,7 +1,7 @@
 - 👋 Hi, I’m @CSViPer
-- 👀 I’m interested in customized pc and code learning
+- 👀 I’m interested in customizing pc,coding(python,java),
 - 🌱 I’m currently learning BE Computer Science
-- 💞️ I’m looking to collaborate on Customized Pc bussiness
+- 💞️ I’m looking to learn web developement and cloud engineering
 - 📫 How to reach me  @s.u.r.a.n.k.a.n Insta DM me
 
 <!---
