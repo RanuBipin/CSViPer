@@ -1,73 +1,55 @@
-package CNSlab;
-import java.util.*;
-public class Program1 
+import java.util.Scanner; 
+import java.io.*; 
+public class Crc1 {
+public static void main(String args[]) {
+Scanner sc = new Scanner(System.in);
+ System. out.print("Enter message bits: ");
+String message = sc.nextLine();
+System.out.print("Enter generator: ");
+String generator = sc.nextLine();
+int data[] = new int[message.length() + generator.length() - 1];
+int divisor[] = new int[generator.length()]; 
+for(int i=0;i<message.length();i++)
+data[i] = Integer.parseInt(message.charAt(i)+""); 
+for(int i=0;i<generator.length();i++)
+divisor[i] = Integer.parseInt(generator.charAt(i)+"");
+for(int i=0;i<message.length();i++)
 {
-void div(int a[],int k)
+if(data[i]==1)
+ for(int j=0;j<divisor.length;j++)
+ data[i+j] ^= divisor[j]; 
+} 
+ System.out.print("The checksum code is: "); 
+ for(int i=0;i<message.length();i++)
+data[i] = Integer.parseInt(message.charAt(i)+""); 
+for(int i=0;i<data.length;i++) 
+ System.out.print(data[i]);
+ System.out.println();
+System.out.print("Enter checksum code: "); 
+message = sc.nextLine(); 
+System.out.print("Enter generator: "); 
+generator = sc.nextLine(); 
+data = new int[message.length() + generator.length() - 1]; 
+divisor = new int[generator.length()]; 
+for(int i=0;i<message.length();i++) 
+data[i] = Integer.parseInt(message.charAt(i)+"");
+for(int i=0;i<generator.length();i++) 
+divisor[i] = Integer.parseInt(generator.charAt(i)+""); 
+for(int i=0;i<message.length();i++)
 {
-	int gp[]= {1,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,1};
-	for (int i=0;i<k;i++)
-	{
-		int count=0;
-		if (a[i]==1)
-		{
-			for (int j=i;j<17+i;j++)
-			{
-				a[j]=a[j]^gp[count++];			}
-		}
-	}
+if(data[i]==1)
+ for(int j=0;j<divisor.length;j++)
+ data[i+j] ^= divisor[j];\
+} 
+boolean valid = true; 
+for(int i=0;i<data.length;i++) 
+if(data[i]==1){
+ valid = false;
+ break; 
+} 
+if(valid==true)
+System.out.println("Data stream is valid"); 
+else 
+System.out.println("Data stream is invalid");
 }
-public static void main (String []args)
-{
-	int a[]=new int[100];
-	int b[]= new int[100];
-	int len,k;
-	Program1 ob=new Program1();
-	System.out.println("Enter the Length of data frame");
-	Scanner sc=new Scanner(System.in);
-	len=sc.nextInt();
-	int flag=0;
-	System.out.println("Enter the message");
-	for(int i=0;i<len;i++)
-	{
-		a[i]=sc.nextInt();
-	}for (int i=0;i<16;i++)
-	{
-		a[len++]=0;
-	}
-	k=len-16;
-	for(int i=0;i<len;i++)
-	{
-		b[i]=a[i];
-	}
-	ob.div(a, k);
-	for(int i=0;i<len;i++)
-	a[i] = a[i]^b[i];
-	System.out.println("Data to be transitted");
-for (int i=0;i<len;i++)
-{
-	System.out.println(a[i]+"");	
-}	
-System.out.println();
-System.out.println("Enter the recieved data");
-for(int i=0;i<len;i++)
-{
-	a[i]=sc.nextInt();
 }
-ob.div(a,k);
-for(int i=0;i<len;i++)
-{
-	if(a[i]!=0)
-	{
-	flag=1;
-	break;
-	
-	}
-}
-if(flag==1)
-{
-	System.out.println("error in data");
-}else
-{
-	System.out.println("no error");
-}
-}}
